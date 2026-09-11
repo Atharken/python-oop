@@ -29,39 +29,88 @@ while True:
   
   elif main == 1:
     name = input("enter your name\n:")
+    found = True
+    for i in accounts:
+      if i.owner == name:
+        found = False
+        print("account name already existed")
+        break
+    if found == False:
+      continue
     y = bankaccount(name)
-    accounts.append(y)
+    accounts.append(y)  #account id stored in a list
 
 
   elif main == 2:
     acc = input("enter account owner name\n:")
+    found = False
     for i in accounts:
-       if i.owner == acc:     # think of i as a bankaccount(athar) not a string but a whole class 
+      if i.owner == acc:   # think of i as a bankaccount(athar) not a string but a whole class
+        found = True
+        try: 
           x = int(input("enter your amount\n:"))
+          if x <= 0:
+            print("you can't deposit amount less than or equal to 0")
+            continue
+        except ValueError:
+          print("enter a valid number")
+          continue
+        else:
+        
           i.deposit(x)
+        break
+    if found == False: 
+      print(f"no account found of name {acc}")
+      continue
 
 
   elif main == 3:
     acc = input("enter account owner name\n:")
+    found = False
     for i in accounts:
       if i.owner == acc:     # think of i as a bankaccount(athar) not a string but a whole class 
-        x = int(input("enter your amount\n:"))
-        i.withdraw(x)
+        found = True
+        try:
+          x = int(input("enter your amount\n:"))
+        except ValueError:
+          print("enter a valid number ! ! !")
+          continue
+        else:
+          if x > i.balance:
+            print("insufficient balance")
+            continue
+          i.withdraw(x)
+    if found == False: 
+      print(f"no account found of name {acc}")
+      continue
+
 
   elif main == 4:
     acc = input("enter account owner name\n:")
+    found = False
     for i in accounts:
       if i.owner == acc:
+       found = True
        x1 = i.check_balance()
        print(x1)
-           
+    if found ==  False: 
+      print(f"no account found of name {acc}")
+      continue
+  
   
   elif main == 5:
     acc = input("enter account owner name\n:")
+    found = False
     for i in accounts:
       if i.owner == acc:
+       found = True
        x1 = i.check_balance()
        print(x1)
+    if found == True: 
+      print(f"no account found of name {acc}")
+      continue
+  
+
 
   elif main == 6:
      for i in accounts:

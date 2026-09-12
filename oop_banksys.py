@@ -1,10 +1,10 @@
 class bankaccount:
 
     
-    def __init__(self, owner):
+    def __init__(self, owner, id):
         self.owner = owner
         self.balance = 10000
-        #self.id = None
+        self.id = id
 
 
 
@@ -19,6 +19,11 @@ class bankaccount:
     def check_balance(self):
         return f"name : {self.owner}\nbalance : {self.balance}"
 
+    def acc_info(self):
+        return f"name : {self.owner}\nbalance : {self.balance}\naccount id : {self.id}"
+    
+    
+
 
 accounts = []
 while True:
@@ -30,15 +35,19 @@ while True:
   
   elif main == 1:
     name = input("enter your name\n:")
+    x = 1001
     found = True
     for i in accounts:
       if i.owner == name:
         found = False
         print("account name already existed")
         break
+
+
     if found == False:
       continue
-    y = bankaccount(name)
+    x1 = x + len(accounts)
+    y = bankaccount(name, x1)
     accounts.append(y)  #account object is stored in a list
 
 
@@ -106,7 +115,7 @@ while True:
     for i in accounts:
       if i.owner == acc:
        found = True
-       x1 = i.check_balance()
+       x1 = i.acc_info()
        print(x1)
     if found == False: 
       print(f"no account found of name {acc}")

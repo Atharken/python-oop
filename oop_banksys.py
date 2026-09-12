@@ -36,18 +36,26 @@ while True:
   elif main == 1:
     name = input("enter your name\n:")
     x = 1001
+    
     found = True
     for i in accounts:
       if i.owner == name:
         found = False
         print("account name already existed")
         break
-
-
     if found == False:
       continue
-    x1 = x + len(accounts)
-    y = bankaccount(name, x1)
+
+
+    if len(accounts) >= 0:
+      t = x
+      for i in accounts:
+        if i.id >= t:
+          t = t + 1
+        x = t
+          
+    
+    y = bankaccount(name, x)
     accounts.append(y)  #account object is stored in a list
 
 
@@ -125,6 +133,6 @@ while True:
 
   elif main == 6:
      for i in accounts:
-        x = i.check_balance()
+        x = i.acc_info()
         print(f"{x}\n\n\n")
            

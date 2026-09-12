@@ -4,6 +4,7 @@ class bankaccount:
     def __init__(self, owner):
         self.owner = owner
         self.balance = 10000
+        #self.id = None
 
 
 
@@ -38,7 +39,7 @@ while True:
     if found == False:
       continue
     y = bankaccount(name)
-    accounts.append(y)  #account id stored in a list
+    accounts.append(y)  #account object is stored in a list
 
 
   elif main == 2:
@@ -80,6 +81,7 @@ while True:
             print("insufficient balance")
             continue
           i.withdraw(x)
+          break
     if found == False: 
       print(f"no account found of name {acc}")
       continue
@@ -106,7 +108,7 @@ while True:
        found = True
        x1 = i.check_balance()
        print(x1)
-    if found == True: 
+    if found == False: 
       print(f"no account found of name {acc}")
       continue
   

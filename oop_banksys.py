@@ -46,8 +46,14 @@ while True:
         break
     if found == False:
       continue
-    acc_type = int(input("SELECT ACCOUNT TYPE\n\n\n\n1.savings account\n2.current account\n3.salary account\n4.fixed deposit account\n5.recurring deposit account\n6.demat\n7.NRI account\n:"))
-    
+    try:
+      acc_type = int(input("SELECT ACCOUNT TYPE\n\n\n\n1.savings account\n2.current account\n3.salary account\n4.fixed deposit account\n5.recurring deposit account\n6.demat\n7.NRI account\n:"))
+      if acc_type <=0 or acc_type >= 8:
+        print("enter between 1-7")
+        continue
+    except ValueError:
+      print("error you can't input other than natural numbers")
+      continue
     if len(accounts) >= 0:
       t = x
       for i in accounts:

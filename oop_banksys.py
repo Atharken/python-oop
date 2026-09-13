@@ -1,10 +1,11 @@
 class bankaccount:
 
     
-    def __init__(self, owner, id):
+    def __init__(self, owner, id, typ):
         self.owner = owner
         self.balance = 10000
         self.id = id
+        self.typ = typ
 
 
 
@@ -20,7 +21,7 @@ class bankaccount:
         return f"name : {self.owner}\nbalance : {self.balance}"
 
     def acc_info(self):
-        return f"name : {self.owner}\nbalance : {self.balance}\naccount id : {self.id}"
+        return f"name : {self.owner}\nbalance : {self.balance}\naccount id : {self.id}\naccount type : {self.typ}"
     
     
 
@@ -36,7 +37,7 @@ while True:
   elif main == 1:
     name = input("enter your name\n:")
     x = 1001
-    
+    list_type = ["savings","current","salary","fixed deposit","recurring deposit","demat","NRI"]
     found = True
     for i in accounts:
       if i.owner == name:
@@ -45,8 +46,8 @@ while True:
         break
     if found == False:
       continue
-
-
+    acc_type = int(input("SELECT ACCOUNT TYPE\n\n\n\n1.savings account\n2.current account\n3.salary account\n4.fixed deposit account\n5.recurring deposit account\n6.demat\n7.NRI account\n:"))
+    
     if len(accounts) >= 0:
       t = x
       for i in accounts:
@@ -55,7 +56,7 @@ while True:
         x = t
           
     
-    y = bankaccount(name, x)
+    y = bankaccount(name, x, list_type[acc_type - 1])
     accounts.append(y)  #account object is stored in a list
 
 

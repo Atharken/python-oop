@@ -1,3 +1,4 @@
+
 import csv
 from pathlib import Path
 
@@ -22,7 +23,13 @@ while True:
 
     elif main == "1":
 
-        type = input("enter type\n:")
+        type = ""
+
+        typee = input("enter type\n1.expense\n2.income\n:")
+        if typee == "1":
+            type = "expense"
+        elif typee == "2":
+            type = "income" 
         category = input("enter category\n")
         amount = int(input("enter amount\n:"))
         name = input("enter name\n")

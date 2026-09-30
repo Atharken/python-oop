@@ -10,10 +10,12 @@ headers = ["type", "category", "amount", "name"]
 def summary():
 
     with open("expense.csv","r",newline="") as f:
-      r = csv.DictReader(f,fieldnames=headers)
+      r = csv.DictReader(f)
+
+      r1 = list(r)
       
-      for index, item in enumerate(r):
-            return f" -- {index+1} type : {item['type']}  |  category : {item['category']}  |  amount : {item['amount']}  |  name : {item['name']}  "
+      return f"total number of transactions are {len(r1)}"
+            
          
 def average():
 
@@ -21,18 +23,29 @@ def average():
   exp = int(0)
   
   with open("expense.csv","r",newline="") as f:
-      r = csv.DictReader(f,fieldnames=headers)
+      r = csv.DictReader(f)
 
       for i in r:
           if i['type'] == "expense":
               exp = exp + int(i['amount'])
               local.append(i)
       return f"average expense is {exp/len(local)}"
+
+         
+def average2():
+
+  local = []
+  inc = int(0)
+  
+  with open("expense.csv","r",newline="") as f:
+      r = csv.DictReader(f)
+
+      for i in r:
+          if i['type'] == "income":
+              inc = inc + int(i['amount'])
+              local.append(i)
+      return f"average income is {inc/len(local)}"
               
-      
-
-
-
       
 
 
@@ -47,9 +60,9 @@ if not p.exists():
 
 while True:
 
-    main = input("1.add expense\n2.remove expense\n3.Exit\n:")
+    main = input("1.add expense\n2.remove expense\n3.summary\n4.Exit\n:")
 
-    if main == "3":
+    if main == "4":
       
         break
 
@@ -102,9 +115,14 @@ while True:
               w = csv.DictWriter(f,fieldnames = headers)
               w.writeheader()
               w.writerows(expenses)
+    
+    elif main == "3":
+
+        print("===summary===")
+        print(f"{summary()} \n{average()} \n{average2()}")
 
 
               
               
               
-              #remove function is working now add some more methods tomorrow se
+              #add search by category

@@ -4,8 +4,39 @@ from pathlib import Path
 
 p = Path('expense.csv')
 
-
 headers = ["type", "category", "amount", "name"]
+
+
+def summary():
+
+    with open("expense.csv","r",newline="") as f:
+      r = csv.DictReader(f,fieldnames=headers)
+      
+      for index, item in enumerate(r):
+            return f" -- {index+1} type : {item['type']}  |  category : {item['category']}  |  amount : {item['amount']}  |  name : {item['name']}  "
+         
+def average():
+
+  local = []
+  exp = int(0)
+  
+  with open("expense.csv","r",newline="") as f:
+      r = csv.DictReader(f,fieldnames=headers)
+
+      for i in r:
+          if i['type'] == "expense":
+              exp = exp + int(i['amount'])
+              local.append(i)
+      return f"average expense is {exp/len(local)}"
+              
+      
+
+
+
+      
+
+
+
 
 if not p.exists():
     with open("expense.csv", "w", newline="") as f:
@@ -19,6 +50,7 @@ while True:
     main = input("1.add expense\n2.remove expense\n3.Exit\n:")
 
     if main == "3":
+      
         break
 
     elif main == "1":
@@ -70,6 +102,8 @@ while True:
               w = csv.DictWriter(f,fieldnames = headers)
               w.writeheader()
               w.writerows(expenses)
+
+
               
               
               
